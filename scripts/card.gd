@@ -1,11 +1,13 @@
 extends Area2D
 
+@onready var animator: AnimationPlayer = $AnimationPlayer
+
 func _ready() -> void:
-	connect("mouse_entered", entered)
-	connect("mouse_exited", exited)
+	connect("mouse_entered", make_focussed)
+	connect("mouse_exited", leave_focussed)
 
-func entered() -> void:
-	pass
+func make_focussed() -> void:
+	animator.play("hover")
 
-func exited() -> void:
-	pass
+func leave_focussed() -> void:
+	animator.play_backwards("hover")
