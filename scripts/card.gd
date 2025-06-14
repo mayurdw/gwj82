@@ -30,4 +30,7 @@ func leave_focussed() -> void:
 func card_opened() -> void:
 	# Fade the card back
 	back.visible = false
+
+func card_completed() -> void:
+	card_opened()
 	collider.disabled = true
