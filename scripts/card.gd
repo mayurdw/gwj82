@@ -5,9 +5,15 @@ extends Area2D
 @onready var back: Sprite2D = $PlayingCardBacks
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
+var cardInfo: CardInfo
+
 func _ready() -> void:
 	connect("mouse_entered", make_focussed)
 	connect("mouse_exited", leave_focussed)
+	if cardInfo == null:
+		cardInfo = CardInfo.new()
+		cardInfo.card_sprite = CardInfo.CardSprite.FOUR_SPADE
+	card.frame = cardInfo.card_sprite
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

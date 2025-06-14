@@ -26,6 +26,7 @@ z_index = 1
 texture = ExtResource("1_c3lsb")
 hframes = 3
 vframes = 5
+frame = 3
 region_enabled = true
 region_rect = Rect2(0, 0, 420, 950)
 
@@ -33,5 +34,6 @@ region_rect = Rect2(0, 0, 420, 950)
 texture = ExtResource("2_rqn1m")
 hframes = 6
 vframes = 10
+frame = 24
 region_enabled = true
 region_rect = Rect2(0, 0, 840, 1900)
