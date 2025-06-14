@@ -1,47 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://btixqhedmx54a"]
+[gd_scene load_steps=6 format=3 uid="uid://btixqhedmx54a"]
 
 [ext_resource type="Script" uid="uid://wshpukt2r0ec" path="res://scripts/card.gd" id="1_8ptup"]
 [ext_resource type="Texture2D" uid="uid://x464qdujvpmc" path="res://assets/spritesheet/playingCardBacks.png" id="1_c3lsb"]
+[ext_resource type="Texture2D" uid="uid://djv6ln3aw50go" path="res://assets/spritesheet/playingCards.png" id="2_rqn1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ptup"]
 size = Vector2(140, 190)
 
-[sub_resource type="Animation" id="Animation_c3lsb"]
-resource_name = "hover"
-length = 0.17
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayingCardBacks:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.17),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-20, -20)]
-}
-
-[sub_resource type="Animation" id="Animation_8ptup"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayingCardBacks:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqn1m"]
-_data = {
-&"RESET": SubResource("Animation_8ptup"),
-&"hover": SubResource("Animation_c3lsb")
-}
 
 [node name="Card" type="Area2D"]
 script = ExtResource("1_8ptup")
@@ -50,14 +16,22 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8ptup")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rqn1m")
+}
+
 [node name="PlayingCardBacks" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("1_c3lsb")
 hframes = 3
 vframes = 5
 region_enabled = true
 region_rect = Rect2(0, 0, 420, 950)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rqn1m")
-}
+[node name="PlayingCards" type="Sprite2D" parent="."]
+texture = ExtResource("2_rqn1m")
+hframes = 6
+vframes = 10
+region_enabled = true
+region_rect = Rect2(0, 0, 840, 1900)
