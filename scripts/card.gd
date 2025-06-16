@@ -1,36 +1,37 @@
 extends Area2D
 
-@onready var animator: AnimationPlayer = $AnimationPlayer
 @onready var card: Sprite2D = $PlayingCards
 @onready var back: Sprite2D = $PlayingCardBacks
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
+var card_still_in_play = true
+
 var cardInfo: CardInfo
 
 func _ready() -> void:
-	connect("mouse_entered", make_focussed)
-	connect("mouse_exited", leave_focussed)
 	if cardInfo == null:
 		cardInfo = CardInfo.new()
 		cardInfo.card_sprite = CardInfo.CardSprite.FOUR_SPADE
 	card.frame = cardInfo.card_sprite
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		card_opened()
+func change_focus(is_focussed: bool) -> void:
+	#back.material.set("shader_parameter/is_active", is_focussed)
+	var tween = create_tween()
+	# set the uvs in the shader
+	back.material.set_shader_parameter("position", Vector2.ZERO)
+	# use tweens to animate the radius value5
+	tween.tween_method(update_radius, 0.0, 2.0, 1.5)
 
-func make_focussed() -> void:
-	# Focus Animation or Shader
-	pass
+func update_radius(value: float):
+	back.material.set_shader_parameter("radius", value)
 
-func leave_focussed() -> void:
-	# Reverse Focus Animation or Shader
-	pass
+func _on_mouse_entered() -> void:
+	change_focus(true)
 
-func card_opened() -> void:
-	# Fade the card back
-	back.visible = false
+func _on_mouse_exited() -> void:
+	change_focus(false)
 
-func card_completed() -> void:
-	card_opened()
-	collider.disabled = true
+func set_card_complete() -> void:
+	card_still_in_play = false
+	disconnect("mouse_entered", _on_mouse_entered)
+	disconnect("mouse_exited", _on_mouse_exited)

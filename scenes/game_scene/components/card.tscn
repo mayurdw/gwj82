@@ -1,13 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://btixqhedmx54a"]
+[gd_scene load_steps=10 format=3 uid="uid://btixqhedmx54a"]
 
 [ext_resource type="Script" uid="uid://wshpukt2r0ec" path="res://scripts/card.gd" id="1_8ptup"]
 [ext_resource type="Texture2D" uid="uid://x464qdujvpmc" path="res://assets/spritesheet/playingCardBacks.png" id="1_c3lsb"]
+[ext_resource type="Shader" uid="uid://dhbauc38nbrlm" path="res://resources/shaders/replace_colour.gdshader" id="2_i71bi"]
 [ext_resource type="Texture2D" uid="uid://djv6ln3aw50go" path="res://assets/spritesheet/playingCards.png" id="2_rqn1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ptup"]
 size = Vector2(140, 190)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqn1m"]
+[sub_resource type="Gradient" id="Gradient_i71bi"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lb3er"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i71bi"]
+color_ramp = SubResource("Gradient_i71bi")
+noise = SubResource("FastNoiseLite_lb3er")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lb3er"]
+shader = ExtResource("2_i71bi")
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/radius = 0.0
+shader_parameter/borderWidth = 0.02
+shader_parameter/burnMult = 0.135
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_i71bi")
+shader_parameter/burnColor = Color(0, 0, 0, 1)
 
 [node name="Card" type="Area2D"]
 script = ExtResource("1_8ptup")
@@ -16,17 +32,14 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8ptup")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rqn1m")
-}
-
 [node name="PlayingCardBacks" type="Sprite2D" parent="."]
 z_index = 1
+material = SubResource("ShaderMaterial_lb3er")
+position = Vector2(0, -1)
 texture = ExtResource("1_c3lsb")
 hframes = 3
 vframes = 5
-frame = 3
+frame = 12
 region_enabled = true
 region_rect = Rect2(0, 0, 420, 950)
 
@@ -37,3 +50,6 @@ vframes = 10
 frame = 24
 region_enabled = true
 region_rect = Rect2(0, 0, 840, 1900)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
