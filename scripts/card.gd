@@ -15,12 +15,7 @@ func _ready() -> void:
 	card.frame = cardInfo.card_sprite
 
 func change_focus(is_focussed: bool) -> void:
-	#back.material.set("shader_parameter/is_active", is_focussed)
-	var tween = create_tween()
-	# set the uvs in the shader
-	back.material.set_shader_parameter("position", Vector2.ZERO)
-	# use tweens to animate the radius value5
-	tween.tween_method(update_radius, 0.0, 2.0, 1.5)
+	back.material.set("shader_parameter/is_active", is_focussed)
 
 func update_radius(value: float):
 	back.material.set_shader_parameter("radius", value)
