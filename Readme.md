@@ -3,6 +3,7 @@
 ## Task List
 
 - [x] Card Values
+- [x] Card Hover/Focus Animation
 - [ ] Card Reveal Animation
 - [ ] Card Matching
 - [ ] Card Placement
@@ -10,6 +11,8 @@
   - [ ] Moving animation to fixed places
   - [ ] Adding Child items (if it works)
 - [ ] Game UI Placement
+  - [x] Game Theme
+  - [x] Game Colour Pallete
   - [ ] Hearts
   - [ ] Pause Menu
   - [ ] Tab / Purchase Menu
