@@ -26,7 +26,6 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autolo
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
@@ -36,7 +35,7 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 
 [gui]
 
-theme/custom="res://addons/maaacks_game_template/examples/resources/themes/grow.tres"
+theme/custom="uid://u6v5kamh1k6y"
 
 [internationalization]
 
@@ -52,3 +51,4 @@ disable_install_wizard=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.858824, 0.498039, 0.403922, 1)

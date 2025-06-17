@@ -16,6 +16,10 @@ func _ready() -> void:
 
 func change_focus(is_focussed: bool) -> void:
 	back.material.set("shader_parameter/is_active", is_focussed)
+	create_tween().tween_method(_update_radius, 0.1, 2.0, 0.5)
+
+func _update_radius(radius: float) -> void:
+	back.material.set_shader_parameter("radius", radius)
 
 func update_radius(value: float):
 	back.material.set_shader_parameter("radius", value)

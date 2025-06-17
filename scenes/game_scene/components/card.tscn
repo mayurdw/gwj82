@@ -12,12 +12,12 @@ size = Vector2(140, 190)
 resource_local_to_scene = true
 shader = ExtResource("2_i71bi")
 shader_parameter/tolerance = 0.1
-shader_parameter/color_to_be_replaced = PackedColorArray(0.784314, 0.247059, 0.247059, 1, 0.996078, 0.996078, 0.996078, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/new_colors = PackedColorArray(0, 0.734863, 0, 1, 0.0156863, 0.0156863, 0.0156863, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_to_be_replaced = PackedColorArray(0.321569, 0.592157, 0.282353, 1, 0.996078, 0.996078, 0.996078, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/new_colors = PackedColorArray(1, 0.803922, 0, 1, 0.282353, 0.282353, 0.290196, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/radius = 2.0
 shader_parameter/is_active = false
 
 [node name="Card" type="Area2D"]
-position = Vector2(99, 111)
 script = ExtResource("1_8ptup")
 metadata/_edit_group_ = true
 
@@ -30,7 +30,7 @@ material = SubResource("ShaderMaterial_lb3er")
 texture = ExtResource("1_c3lsb")
 hframes = 3
 vframes = 5
-frame = 12
+frame = 14
 region_enabled = true
 region_rect = Rect2(0, 0, 420, 950)
 

@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_b2xp2"]
 [ext_resource type="Script" uid="uid://upkolvghgj67" path="res://addons/maaacks_game_template/examples/scenes/opening/opening.gd" id="2_py6kc"]
+[ext_resource type="Texture2D" uid="uid://n3frdclj7mff" path="res://assets/images/GameDevLogo.png" id="3_w60c0"]
 [ext_resource type="Texture2D" uid="uid://chgq1mf3uh8re" path="res://addons/maaacks_game_template/examples/assets/images/GWJ-Full-Logo-tag-Orange2.svg" id="3_wu074"]
-[ext_resource type="Texture2D" uid="uid://868ho8sko0sk" path="res://addons/maaacks_game_template/examples/assets/images/ThemeBanner.png" id="4_afvor"]
-[ext_resource type="Texture2D" uid="uid://b3ellm2ls2gj8" path="res://addons/maaacks_game_template/examples/assets/images/WildcardsBanner.png" id="5_r42fi"]
+[ext_resource type="Texture2D" uid="uid://brypdvlf03qnq" path="res://assets/images/ThemeBanner.png" id="4_w60c0"]
 
 [node name="Opening" instance=ExtResource("1_b2xp2")]
 script = ExtResource("2_py6kc")
 next_scene = "uid://bjfls22vlicm5"
-images = Array[Texture2D]([ExtResource("3_wu074"), ExtResource("4_afvor"), ExtResource("5_r42fi")])
+images = Array[Texture2D]([ExtResource("3_w60c0"), ExtResource("3_wu074"), ExtResource("4_w60c0")])
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 bus = &"Master"
