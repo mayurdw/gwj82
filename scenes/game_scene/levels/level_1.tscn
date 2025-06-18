@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck74pbk747v5r"]
+[gd_scene load_steps=10 format=3 uid="uid://ck74pbk747v5r"]
 
 [ext_resource type="Script" uid="uid://buxxj8qd2a5tm" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_v57fp"]
-[ext_resource type="Script" uid="uid://dvewqdtaf68y8" path="res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd" id="3_nsv34"]
+[ext_resource type="Theme" uid="uid://u6v5kamh1k6y" path="res://resources/themes/steal_this_theme.tres" id="2_8avtb"]
 [ext_resource type="Script" uid="uid://bqsi53w7mnkyu" path="res://scenes/game_scene/tutorial_manager.gd" id="4_623lg"]
+[ext_resource type="Texture2D" uid="uid://2lscuirvkfdj" path="res://assets/images/ui/chipGreenWhite_border.png" id="5_27a66"]
 [ext_resource type="PackedScene" uid="uid://dlpfa876b3eiu" path="res://scenes/game_scene/tutorials/tutorial_1.tscn" id="5_sycfm"]
+[ext_resource type="Texture2D" uid="uid://c0whugoo2ci41" path="res://assets/images/ui/keyboard_tab.png" id="6_m77gi"]
+[ext_resource type="Texture2D" uid="uid://cvrwfqnbxvd1u" path="res://assets/images/ui/keyboard_tab_outline.png" id="7_tukvp"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hehv2"]
+device = -1
+keycode = 4194306
+
+[sub_resource type="Shortcut" id="Shortcut_27a66"]
+events = [SubResource("InputEventKey_hehv2")]
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -23,68 +32,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.282353, 0.282353, 0.290196, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 48.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Dice Button" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("2_v57fp")
+theme = ExtResource("2_8avtb")
+toggle_mode = true
+shortcut = SubResource("Shortcut_27a66")
+texture_normal = ExtResource("6_m77gi")
+texture_pressed = ExtResource("7_tukvp")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Win"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer/PanelContainer"]
 layout_mode = 2
-text = "Tutorial"
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_nsv34")
+texture = ExtResource("5_27a66")
+expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Coin Count" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-text = "Change Level State: "
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Change Color"
+theme = ExtResource("2_8avtb")
+theme_type_variation = &"BoldLabel"
+theme_override_font_sizes/font_size = 24
+text = "x 100"
+vertical_alignment = 1
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_623lg")
 tutorial_scenes = Array[PackedScene]([ExtResource("5_sycfm")])
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Dice Button" to="." method="_on_dice_button_pressed"]
