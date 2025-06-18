@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://btixqhedmx54a"]
+[gd_scene load_steps=9 format=3 uid="uid://btixqhedmx54a"]
 
 [ext_resource type="Script" uid="uid://wshpukt2r0ec" path="res://scripts/card.gd" id="1_8ptup"]
 [ext_resource type="Texture2D" uid="uid://x464qdujvpmc" path="res://assets/spritesheet/playingCardBacks.png" id="1_c3lsb"]
 [ext_resource type="Shader" uid="uid://dhbauc38nbrlm" path="res://resources/shaders/replace_colour.gdshader" id="2_i71bi"]
 [ext_resource type="Texture2D" uid="uid://djv6ln3aw50go" path="res://assets/spritesheet/playingCards.png" id="2_rqn1m"]
+[ext_resource type="Texture2D" uid="uid://2lscuirvkfdj" path="res://assets/images/ui/chipGreenWhite_border.png" id="5_lb3er"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ptup"]
 size = Vector2(140, 190)
@@ -17,7 +18,19 @@ shader_parameter/new_colors = PackedColorArray(1, 0.803922, 0, 1, 0.282353, 0.28
 shader_parameter/radius = 2.0
 shader_parameter/is_active = false
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3u4ui"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 750.0
+gravity = Vector3(0, 980, 0)
+scale_min = 0.3
+scale_max = 0.3
+
 [node name="Card" type="Area2D"]
+position = Vector2(200, 175)
 script = ExtResource("1_8ptup")
 metadata/_edit_group_ = true
 
@@ -42,5 +55,22 @@ frame = 24
 region_enabled = true
 region_rect = Rect2(0, 0, 840, 1900)
 
+[node name="Emitter" type="GPUParticles2D" parent="."]
+z_index = 2
+emitting = false
+amount = 50
+texture = ExtResource("5_lb3er")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_3u4ui")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
