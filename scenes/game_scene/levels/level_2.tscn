@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7plt8ukhj824"]
+[gd_scene load_steps=5 format=3 uid="uid://b7plt8ukhj824"]
 
-[ext_resource type="Script" uid="uid://3bd6350v3ux5" path="res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level.gd" id="1_aj2y7"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_6kgxv"]
-[ext_resource type="Script" uid="uid://dvewqdtaf68y8" path="res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd" id="3_7i3cc"]
-[ext_resource type="Script" uid="uid://1aoiji5yh0sy" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorial_manager.gd" id="4_jqi08"]
-[ext_resource type="PackedScene" uid="uid://ceosghqutgxop" path="res://addons/maaacks_game_template/examples/scenes/game_scene/tutorials/tutorial_2.tscn" id="5_bwfuy"]
+
+[sub_resource type="Resource" id="Resource_7ge0l"]
+metadata/__load_path__ = "res://addons/maaacks_game_template/examples/scenes/game_scene/levels/level.gd"
+
+[sub_resource type="Resource" id="Resource_qga8p"]
+metadata/__load_path__ = "res://addons/maaacks_game_template/examples/scenes/game_scene/input_display_label.gd"
+
+[sub_resource type="Resource" id="Resource_irplr"]
+metadata/__load_path__ = "res://addons/maaacks_game_template/examples/scenes/game_scene/tutorial_manager.gd"
 
 [node name="Level2" type="Control"]
 layout_mode = 3
@@ -13,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_aj2y7")
+script = SubResource("Resource_7ge0l")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -73,7 +78,7 @@ text = "Tutorial"
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
-script = ExtResource("3_7i3cc")
+script = SubResource("Resource_qga8p")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -86,8 +91,8 @@ text = "Change Color"
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("4_jqi08")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_bwfuy")])
+script = SubResource("Resource_irplr")
+tutorial_scenes = Array[PackedScene]([])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]

@@ -1,11 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://iw4sl5oqhurx"]
 
 [ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/input/input_options_menu.tscn" id="1_8fa1r"]
-[ext_resource type="Script" uid="uid://drgrr8tqd11sm" path="res://addons/maaacks_game_template/examples/scenes/menus/options_menu/input/input_options_menu.gd" id="2_g71tu"]
 [ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="3_jr21q"]
 
+[sub_resource type="Resource" id="Resource_fwapm"]
+metadata/__load_path__ = "res://addons/maaacks_game_template/examples/scenes/menus/options_menu/input/input_options_menu.gd"
+
 [node name="Controls" instance=ExtResource("1_8fa1r")]
-script = ExtResource("2_g71tu")
+script = SubResource("Resource_fwapm")
 
 [node name="VBoxContainer" parent="." index="0"]
 theme_override_constants/separation = 16

@@ -2,7 +2,7 @@ class_name GameStateExample
 extends Resource
 
 const STATE_NAME : String = "GameStateExample"
-const FILE_PATH = "res://addons/maaacks_game_template/examples/scripts/game_state.gd"
+const FILE_PATH = "res://scripts/game_state.gd"
 
 @export var level_states : Dictionary = {}
 @export var max_level_reached : int

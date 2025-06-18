@@ -1,9 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjfls22vlicm5"]
+[gd_scene load_steps=18 format=3 uid="uid://bjfls22vlicm5"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_fknrs"]
-[ext_resource type="Script" uid="uid://b5qy5nr1wivs4" path="res://addons/maaacks_game_template/examples/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_era61"]
-[ext_resource type="PackedScene" uid="uid://qqgmci6ksfrb" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_rr1rn"]
-[ext_resource type="PackedScene" uid="uid://crqtjaefrcue5" path="res://scenes/credits/scrollable_credits.tscn" id="4_sr523"]
+[ext_resource type="Script" uid="uid://k123g1nai5hl" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_era61"]
 [ext_resource type="FontFile" uid="uid://0wpquwe1st84" path="res://assets/fonts/Kaph-Regular.ttf" id="5_sr523"]
 
 [sub_resource type="Animation" id="1"]
@@ -358,8 +356,6 @@ font_size = 32
 script = ExtResource("2_era61")
 level_select_packed_scene = null
 game_scene_path = "uid://cb1eml7kad5kr"
-options_packed_scene = ExtResource("3_rr1rn")
-credits_packed_scene = ExtResource("4_sr523")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -371,9 +367,6 @@ tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="BackgroundMusicPlayer" parent="." index="3"]
-bus = &"Master"
-
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
@@ -381,7 +374,6 @@ modulate = Color(1, 1, 1, 0)
 modulate = Color(1, 1, 1, 0)
 
 [node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
-text = "Out Of Sight"
 label_settings = SubResource("LabelSettings_ixa71")
 
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
