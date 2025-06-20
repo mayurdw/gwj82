@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform float tolerance: hint_range(0.0, 1.0, 0.01) = 0.1;
 uniform vec4 color_to_be_replaced[4]: source_color;
 uniform vec4 new_colors[4]: source_color;
-uniform float radius: hint_range(0.0, 2.0, 0.1) = 0.5;
+uniform float radius: hint_range(0.0, 1.5, 0.1) = 0.5;
 
 uniform bool is_active = false;
 
