@@ -9,6 +9,7 @@ var _card_to_match_index: int = -1
 
 signal correct_card(score: int)
 signal incorrect_card(score: int)
+signal level_won
 
 func ready_cards() -> void:
 	for n in level_info.card_families.size():
@@ -39,6 +40,13 @@ func activate_cards() -> void:
 	for n in container.get_children().size():
 		container.get_child(n).activate_card()
 
+func _check_win_condition() -> void:
+	for n in container.get_children().size():
+		if container.get_child(n).card_still_in_play:
+			return
+	
+	level_won.emit()
+
 func _card_revealed(revealed_card_info_id: int) -> void:
 	var index = _get_index(revealed_card_info_id)
 	print("Index found = %d" % index)
@@ -47,18 +55,13 @@ func _card_revealed(revealed_card_info_id: int) -> void:
 	elif _card_to_match_index < 0:
 		print("Setting new card index")
 		_card_to_match_index = index
-	elif _is_match(_card_to_match_index, index):
+	elif _is_match(_card_to_match_index, index) or _is_partial_match(_card_to_match_index, index):
 		print("Full Match")
-		correct_card.emit(level_info.minimum_correct_score)
+		correct_card.emit(level_info.minimum_correct_score if _is_match(_card_to_match_index, index) else level_info.minimum_partial_match_score)
 		container.get_child(index).reveal_card_with_animation(true)
 		container.get_child(_card_to_match_index).reveal_card_with_animation(true)
 		_card_to_match_index = -1
-	elif _is_partial_match(_card_to_match_index, index):
-		print("Partial Match")
-		correct_card.emit(level_info.minimum_partial_match_score)
-		container.get_child(index).reveal_card_with_animation(true)
-		container.get_child(_card_to_match_index).reveal_card_with_animation(true)
-		_card_to_match_index = -1
+		_check_win_condition()
 	else:
 		print("No match")
 		incorrect_card.emit(level_info.minimum_incorrect_score)

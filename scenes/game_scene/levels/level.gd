@@ -1,5 +1,8 @@
 extends Node
 
+signal level_won
+signal level_lost
+
 @onready var timer: Timer = $Timer
 @onready var time_display: Label = $"VBoxContainer/MarginContainer/HBoxContainer/Time Display"
 @onready var card_manager: Card = $"VBoxContainer/Card Manager"
@@ -40,3 +43,7 @@ func _on_timer_timeout() -> void:
 		card_manager.activate_cards()
 	else:
 		time_display.text = "00: 0%d" % (total_time - _current_time)
+
+
+func _on_card_manager_level_won() -> void:
+	level_won.emit()

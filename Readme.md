@@ -4,8 +4,8 @@
 
 - [x] Card Values
 - [x] Card Hover/Focus Animation
-- [ ] Card Reveal Animation
-- [ ] Card Matching
+- [x] Card Reveal Animation
+- [x] Card Matching
 - [ ] Card Placement
   - [ ] Allotment of space available
   - [ ] Moving animation to fixed places
@@ -13,8 +13,8 @@
 - [ ] Game UI Placement
   - [x] Game Theme
   - [x] Game Colour Pallete
-  - [ ] Hearts
-  - [ ] Pause Menu
+  - [x] Hearts
+  - [x] Pause Menu
   - [ ] Tab / Purchase Menu
   - [ ] Row v Column Items
 - [ ] Dice Rolls
