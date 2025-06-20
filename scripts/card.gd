@@ -43,16 +43,13 @@ func _on_gui_input(event: InputEvent) -> void:
 		card_revealed.emit(unique_id)
 
 func reveal_card_with_animation(is_match: bool) -> void:
-	if card_still_in_play:
-		display_card()
-
-		if is_match:
-			emitter.emitting = true
-			card_still_in_play = false
-		else:
-			card.material.set_shader_parameter("active", true)
-			create_tween().tween_method(_incorrect_match, 90.0, 0.0, 0.25)
-			timer.start()
+	if is_match:
+		emitter.emitting = true
+		card_still_in_play = false
+	else:
+		card.material.set_shader_parameter("active", true)
+		create_tween().tween_method(_incorrect_match, 90.0, 0.0, 0.25)
+		timer.start()
 
 func _update_radius(radius: float) -> void:
 	back.material.set_shader_parameter("radius", radius)
