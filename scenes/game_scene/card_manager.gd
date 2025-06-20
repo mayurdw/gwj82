@@ -2,7 +2,7 @@ class_name Card
 extends Node
 
 @export var level_info: LevelInfo
-@onready var h_box_container: HBoxContainer = $HBoxContainer
+@onready var container: HBoxContainer = $HBoxContainer
 @onready var card_scene := preload("res://scenes/game_scene/components/card.tscn")
 
 var _card_to_match_index: int = -1
@@ -15,11 +15,12 @@ func _ready() -> void:
 		var scene = card_scene.instantiate()
 		scene.card_number = level_info.card_numbers[n]
 		scene.card_family = level_info.card_families[n]
-		h_box_container.add_child(scene)
+		scene.connect("card_revealed", _card_revealed)
+		container.add_child(scene)
 
 func _get_index(index_to_search: int) -> int:
-	for n in level_info.card_numbers.size():
-		if index_to_search == ((level_info.card_numbers[n] + 1) * (level_info.card_families[n] + 1)):
+	for n in container.get_children().size():
+		if index_to_search == container.get_child(n).unique_id:
 			return n
 	
 	return -1
@@ -32,18 +33,27 @@ func _is_partial_match(current_index : int, index_to_match: int) -> bool:
 
 func _card_revealed(revealed_card_info_id: int) -> void:
 	var index = _get_index(revealed_card_info_id)
-	if _card_to_match_index < 0:
+	print("Index found = %d" % index)
+	if index == _card_to_match_index:
+		print("Double Click, ignore")
+	elif _card_to_match_index < 0:
+		print("Setting new card index")
 		_card_to_match_index = index
-	elif _is_match(_card_to_match_index, revealed_card_info_id):
+	elif _is_match(_card_to_match_index, index):
+		print("Full Match")
 		correct_card.emit(level_info.minimum_correct_score)
-		h_box_container.get_child(index).reveal_card_with_animation(true)
-		h_box_container.get_child(_card_to_match_index).reveal_card_with_animation(true)
-	elif _is_partial_match(_card_to_match_index, revealed_card_info_id):
+		container.get_child(index).reveal_card_with_animation(true)
+		container.get_child(_card_to_match_index).reveal_card_with_animation(true)
+		_card_to_match_index = -1
+	elif _is_partial_match(_card_to_match_index, index):
+		print("Partial Match")
 		correct_card.emit(level_info.minimum_partial_match_score)
-		h_box_container.get_child(index).reveal_card_with_animation(true)
-		h_box_container.get_child(_card_to_match_index).reveal_card_with_animation(true)
+		container.get_child(index).reveal_card_with_animation(true)
+		container.get_child(_card_to_match_index).reveal_card_with_animation(true)
+		_card_to_match_index = -1
 	else:
+		print("No match")
 		incorrect_card.emit(level_info.minimum_incorrect_score)
-		h_box_container.get_child(index).reveal_card_with_animation(false)
-		h_box_container.get_child(_card_to_match_index).reveal_card_with_animation(false)
+		container.get_child(index).reveal_card_with_animation(false)
+		container.get_child(_card_to_match_index).reveal_card_with_animation(false)
 		_card_to_match_index = -1
