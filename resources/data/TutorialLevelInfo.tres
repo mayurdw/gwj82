@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=2 format=3 uid="uid://cid27nkxjl4gw"]
+
+[ext_resource type="Script" uid="uid://61h0whr8qoum" path="res://scripts/resource_scripts/LevelInfo.gd" id="2_053eq"]
+
+[resource]
+script = ExtResource("2_053eq")
+card_families = Array[int]([0, 3])
+card_numbers = Array[int]([2, 7])
+minimum_correct_score = 100
+minimum_incorrect_score = -50
+minimum_partial_match_score = 75
+metadata/_custom_type_script = "uid://61h0whr8qoum"

@@ -16,10 +16,12 @@ shader_parameter/radius = 1.2
 shader_parameter/is_active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lb3er"]
+resource_local_to_scene = true
 atlas = ExtResource("3_lb3er")
 region = Rect2(600, 200, 140, 190)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3u4ui"]
+resource_local_to_scene = true
 atlas = ExtResource("4_lb3er")
 region = Rect2(0, 0, 140, 190)
 

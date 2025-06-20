@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqxjgow0npi7g"]
+
+[ext_resource type="Script" uid="uid://crauyuyqynfvt" path="res://scenes/game_scene/card_manager.gd" id="1_308m1"]
+[ext_resource type="Resource" uid="uid://cid27nkxjl4gw" path="res://resources/data/TutorialLevelInfo.tres" id="2_nw54d"]
+
+[node name="Card Manager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_308m1")
+level_info = ExtResource("2_nw54d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
