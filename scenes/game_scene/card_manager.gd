@@ -10,7 +10,7 @@ var _card_to_match_index: int = -1
 signal correct_card(score: int)
 signal incorrect_card(score: int)
 
-func _ready() -> void:
+func ready_cards() -> void:
 	for n in level_info.card_families.size():
 		var scene = card_scene.instantiate()
 		scene.card_number = level_info.card_numbers[n]
@@ -30,6 +30,14 @@ func _is_match(current_index : int, index_to_match: int) -> bool:
 
 func _is_partial_match(current_index : int, index_to_match: int) -> bool:
 	return level_info.card_numbers[current_index] == level_info.card_numbers[index_to_match]
+
+func display_cards() -> void:
+	for n in container.get_children().size():
+		container.get_child(n).display_card()
+
+func activate_cards() -> void:
+	for n in container.get_children().size():
+		container.get_child(n).activate_card()
 
 func _card_revealed(revealed_card_info_id: int) -> void:
 	var index = _get_index(revealed_card_info_id)

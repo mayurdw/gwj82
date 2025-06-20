@@ -30,7 +30,12 @@ func change_focus(is_focussed: bool) -> void:
 	create_tween().tween_method(_update_radius, 0.1, 2.0, 0.5)
 
 func display_card() -> void:
+	card_still_in_play = false
 	back.visible = false
+
+func activate_card() -> void:
+	card_still_in_play = true
+	back.visible = true
 
 func _on_gui_input(event: InputEvent) -> void:
 	if back.visible and event is InputEventMouseButton:
