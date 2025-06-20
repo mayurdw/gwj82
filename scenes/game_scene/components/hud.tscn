@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://mockfigh0k36"]
+
+[ext_resource type="Theme" uid="uid://u6v5kamh1k6y" path="res://resources/themes/steal_this_theme.tres" id="1_i26xr"]
+[ext_resource type="Script" uid="uid://yviwm1mhu05g" path="res://scenes/game_scene/components/hud.gd" id="1_l6q40"]
+[ext_resource type="Texture2D" uid="uid://c0whugoo2ci41" path="res://assets/images/ui/keyboard_tab.png" id="2_l6q40"]
+[ext_resource type="Texture2D" uid="uid://cvrwfqnbxvd1u" path="res://assets/images/ui/keyboard_tab_outline.png" id="3_ylgc1"]
+[ext_resource type="Texture2D" uid="uid://2lscuirvkfdj" path="res://assets/images/ui/chipGreenWhite_border.png" id="4_hxaax"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hehv2"]
+device = -1
+keycode = 4194306
+
+[sub_resource type="Shortcut" id="Shortcut_27a66"]
+events = [SubResource("InputEventKey_hehv2")]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+script = ExtResource("1_l6q40")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Dice Button" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_i26xr")
+toggle_mode = true
+shortcut = SubResource("Shortcut_27a66")
+texture_normal = ExtResource("2_l6q40")
+texture_pressed = ExtResource("3_ylgc1")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_hxaax")
+expand_mode = 2
+
+[node name="Coin Count" type="Label" parent="HBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_i26xr")
+theme_type_variation = &"BoldLabel"
+theme_override_font_sizes/font_size = 24
+text = "x 100"
+vertical_alignment = 1
+
+[node name="Time Display" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_i26xr")
+theme_type_variation = &"BoldLabel"
+theme_override_font_sizes/font_size = 24
+text = "00: 00"
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

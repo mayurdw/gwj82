@@ -8,5 +8,5 @@ card_families = Array[int]([0, 3, 1, 3])
 card_numbers = Array[int]([2, 7, 2, 7])
 minimum_correct_score = 100
 minimum_incorrect_score = -50
-minimum_partial_match_score = 75
+minimum_partial_match_score = 70
 metadata/_custom_type_script = "uid://61h0whr8qoum"

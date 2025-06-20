@@ -7,6 +7,7 @@ signal level_lost
 @onready var time_display: Label = $"VBoxContainer/MarginContainer/HBoxContainer/Time Display"
 @onready var card_manager: Card = $"VBoxContainer/Card Manager"
 @onready var tutorial_manager: Node = %TutorialManager
+@onready var hud: MarginContainer = $VBoxContainer/MarginContainer
 
 var level_state : LevelStateExample
 var _current_time := 0
@@ -47,3 +48,10 @@ func _on_timer_timeout() -> void:
 
 func _on_card_manager_level_won() -> void:
 	level_won.emit()
+
+
+func _on_card_manager_correct_card(score: int) -> void:
+	hud.set_new_coins(score)
+
+func _on_card_manager_incorrect_card(score: int) -> void:
+	hud.set_new_coins(score)
