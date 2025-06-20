@@ -9,7 +9,7 @@ uniform bool is_active = false;
 
 void vertex() {
 	if (is_active) {
-		VERTEX.x += sin(TIME * 10.0 + VERTEX.y) * 1.0;
+		VERTEX.x += sin(TIME * 10.0 + VERTEX.y);
 	}
 }
 

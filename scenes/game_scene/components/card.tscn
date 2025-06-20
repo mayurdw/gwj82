@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://btixqhedmx54a"]
+[gd_scene load_steps=12 format=3 uid="uid://btixqhedmx54a"]
 
 [ext_resource type="Script" uid="uid://wshpukt2r0ec" path="res://scripts/card.gd" id="1_8ptup"]
 [ext_resource type="Shader" uid="uid://dhbauc38nbrlm" path="res://resources/shaders/replace_colour.gdshader" id="2_i71bi"]
 [ext_resource type="Texture2D" uid="uid://dlcsyks25dt3h" path="res://assets/spritesheet/playingCards_back.svg" id="3_lb3er"]
+[ext_resource type="Shader" uid="uid://yprg46poms55" path="res://resources/shaders/incorrect_card.gdshader" id="4_3u4ui"]
 [ext_resource type="Texture2D" uid="uid://bw26cf6pm7eam" path="res://assets/spritesheet/playingCards.svg" id="4_lb3er"]
 [ext_resource type="Texture2D" uid="uid://2lscuirvkfdj" path="res://assets/images/ui/chipGreenWhite_border.png" id="5_lb3er"]
 
@@ -19,6 +20,12 @@ shader_parameter/is_active = false
 resource_local_to_scene = true
 atlas = ExtResource("3_lb3er")
 region = Rect2(600, 200, 140, 190)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shvla"]
+shader = ExtResource("4_3u4ui")
+shader_parameter/active = false
+shader_parameter/intensity = 1.0
+shader_parameter/tint = Color(0.856228, 0.121903, 0.301786, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3u4ui"]
 resource_local_to_scene = true
@@ -49,6 +56,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_lb3er")
 
 [node name="PlayingCards" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_shvla")
 layout_mode = 2
 texture = SubResource("AtlasTexture_3u4ui")
 
@@ -64,7 +72,6 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_3u4ui")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
