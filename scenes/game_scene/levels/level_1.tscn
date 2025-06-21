@@ -49,6 +49,7 @@ size_flags_vertical = 3
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="tutorial_completed" from="TutorialManager" to="." method="_on_tutorial_manager_tutorial_completed"]
+[connection signal="open_power_ups" from="VBoxContainer/MarginContainer" to="." method="_on_margin_container_open_power_ups"]
 [connection signal="correct_card" from="VBoxContainer/Card Manager" to="." method="_on_card_manager_correct_card"]
 [connection signal="incorrect_card" from="VBoxContainer/Card Manager" to="." method="_on_card_manager_incorrect_card"]
 [connection signal="level_won" from="VBoxContainer/Card Manager" to="." method="_on_card_manager_level_won"]

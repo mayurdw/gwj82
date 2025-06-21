@@ -9,6 +9,8 @@ signal level_lost
 @onready var tutorial_manager: Node = %TutorialManager
 @onready var hud: MarginContainer = $VBoxContainer/MarginContainer
 
+@export var power_up_scene: PackedScene = preload("res://scenes/game_scene/components/dice_pad.tscn")
+
 var level_state : LevelStateExample
 var _current_time := 0
 
@@ -55,3 +57,8 @@ func _on_card_manager_correct_card(score: int) -> void:
 
 func _on_card_manager_incorrect_card(score: int) -> void:
 	hud.set_new_coins(score)
+
+
+func _on_margin_container_open_power_ups() -> void:
+	var scene = power_up_scene.instantiate()
+	add_child(scene)
